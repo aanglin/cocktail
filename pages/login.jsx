@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 function login() {
   const { data: session } = useSession();
@@ -6,7 +7,9 @@ function login() {
   if (session) {
     return (
     <div>
-        <p>Welcome, {session.user.email}</p>
+        <p>Welcome, {session.user.name}</p>
+        <Image src={session.user.image} width='100' height='25' className="rounded-2xl p-2" />
+
         <button onClick={()=> signOut()}>Sign Out</button>
     </div>
     )
