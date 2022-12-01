@@ -73,7 +73,7 @@ export default function Home() {
           <div className="text-center text-white font-bold m-2 ">
             <p>Or Log in with</p>
             <button onClick={() => signIn()} className='p-2'>
-              <Image  src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" width="150" height="200" />
+              <Image className='rounded-3xl' src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" width="150" height="200"  alt='/'/>
               </button>
             
           </div>
