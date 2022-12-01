@@ -1,8 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-
+import { useSession, signIn, signOut } from "next-auth/react";
+import Drink from "../public/assets/cocktailpic.jpg";
+import Link from 'next/link';
 
 export default function Home() {
+  const { data: session } = useSession();
+  console.log(session)
+  if (session) {
   return (
     <div>
       <Head>
@@ -12,6 +17,69 @@ export default function Home() {
       </Head>
 
       <h1>It works</h1>
+      <button onClick={()=> signOut()}>Sign Out</button>
     </div>
   )
+  }else {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+      <div className="hidden sm:block h-fit w-full">
+        <Image
+          priority="true"
+          className="h-screen w-full object-cover"
+          src={Drink}
+          alt="Food"
+          
+        />
+      </div>
+      <div className="bg-[#262626] flex flex-col justify-center">
+        <form
+          className="max-w-[400px] w-full mx-auto bg-[#404040] p-8 px-8 rounded-lg"
+          action="/api/login"
+          method="post"
+        >
+          <h2 className="text-4xl text-white font-bold text-center">SIGN IN</h2>
+          <div className="flex flex-col text-gray-400 py-2">
+            <label>Email</label>
+            <input
+              className="rounded-lg bg-[#737373] mt-2 p-2 focus:border--blue-500 focus:bg-gray-800 focus:outline-none"
+              name="email"
+              type="text"
+            />
+          </div>
+          <div className="flex flex-col text-gray-400 py-2">
+            <label>Password</label>
+            <input
+              className="rounded-lg bg-[#737373] mt-2 p-2 focus:border--blue-500 focus:bg-gray-800 focus:outline-none"
+              name="password"
+              type="password"
+            />
+          </div>
+          <div className="flex flex-col text-gray-400 py-1 text-center">
+            <button
+              className="border rounded-xl bg-[#A6A6A6] w-full p-1 my-5 hover:bg-[#262626] text-white"
+            >
+              Log In
+            </button>
+          </div>
+          <p className="text-center text-white font-bold">
+            If you do not have an account please
+          </p>
+          <div className="text-center text-white font-bold m-2 ">
+            <Link className="" href="signUp">
+              Signup
+            </Link>
+          </div>
+          <div className="text-center text-white font-bold m-2 ">
+            <p>Or Log in with</p>
+            <button onClick={() => signIn()} className='p-2'>
+              <Image  src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" width="150" height="200" />
+              </button>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+    )
+  }
 }
