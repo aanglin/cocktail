@@ -26,6 +26,10 @@ export default NextAuth({
       from: process.env.EMAIL_FROM
     })
   ],
+
+  pages:{
+    signIn: "/signin"
+  },
   secret: process.env.JWT_SECRET 
 })
 // export default NextAuth(authOptions)
