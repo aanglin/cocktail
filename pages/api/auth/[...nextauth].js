@@ -28,7 +28,8 @@ export default NextAuth({
   ],
 
   pages:{
-    signIn: "/signin"
+    signIn: "/signin",
+    
   },
   secret: process.env.JWT_SECRET 
 })
