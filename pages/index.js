@@ -9,8 +9,10 @@ import Drink from "../public/assets/home.jpg";
 import Navbar from "../components/navbar";
 import CocktailList from "../components/cocktailList";
 
-export default function Component() {
+
+export default function Component(results) {
   const { data: session } = useSession()
+  
   console.log(session)
   if(session) {
     return(
@@ -24,9 +26,9 @@ export default function Component() {
       <nav className="flex justify-center items-center">
       <Navbar session={session} />
       </nav>
-      <div className="flex justify-center items-center pt-56">
-      <CocktailList />
-      </div>
+      
+      <CocktailList results={results} />
+      
     </>
     )
   }
@@ -63,3 +65,13 @@ export default function Component() {
 }
 
 
+export async function getServerSideProps() {
+  
+  const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin")
+  const results = await res.json()
+  return {
+    props: {
+      results
+    },
+  };
+  };
