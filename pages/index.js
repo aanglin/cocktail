@@ -65,13 +65,13 @@ export default function Component(results) {
 }
 
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
   
-  const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin")
-  const results = await res.json()
-  return {
-    props: {
-      results
-    },
-  };
-  };
+//   const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin")
+//   const results = await res.json()
+//   return {
+//     props: {
+//       results
+//     },
+//   };
+//   };
