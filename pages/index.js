@@ -7,7 +7,8 @@ import {
 } from "next-auth/react";
 import Drink from "../public/assets/home.jpg";
 import Navbar from "../components/navbar";
-import CocktailList from "../components/cocktailList";
+import Gin from "../components/gin";
+import Vodka from "../components/vodka";
 
 
 export default function Component(results) {
@@ -26,8 +27,9 @@ export default function Component(results) {
       <nav className="flex justify-center items-center">
       <Navbar session={session} />
       </nav>
-      
-      <CocktailList results={results} />
+     
+      <Gin  />
+      <Vodka />
       
     </>
     )
@@ -51,7 +53,7 @@ export default function Component(results) {
           </div>
           <div className=" w-full mx-auto bg-blue-400 p-32 px-8 rounded-lg"> 
           <div className="flex flex-col justify-center text-white font-bold">
-      <h1 className="flex justify-center pt-72">Not signed in  </h1> <br/>
+      <h1 className="flex justify-center pt-72">Please signed in  </h1> <br/>
       <div className="flex justify-center  ">
       <button onClick={() => signIn()} className='w-36 border bg-blue-400 rounded-2xl justify-center p-1'>Sign In</button>
       </div>
